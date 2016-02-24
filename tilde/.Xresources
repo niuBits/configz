@@ -1,0 +1,63 @@
+!---- Background and Text Colors
+xterm*background: black
+xterm*foreground: white
+
+!---- Scroll space
+xterm*saveLines: 4096
+
+!---- Fonts
+
+! DejaVu Sans Mono
+!xterm*faceName: DejaVu Sans Mono
+!xterm*faceSize: 12
+
+! Ohsnapu
+!xterm*faceName: Ohsnapu:style=Bold
+!xterm*faceSize: 14
+
+! ProFont
+!xterm*faceName: ProFont
+!xterm*faceSize: 14
+
+! White Rabbit
+xterm*faceName: White Rabbit
+xterm*faceSize: 12
+
+!---- Color Scheme
+*background: #4d4e4f
+*foreground: #ffffff
+! black
+*color0: #000000
+! bright_black
+*color8: #3c3c3c
+! red
+!*color1: #ff0a64
+*color1: #ff0000
+! bright_red
+!*color9: #ff629b
+*color9: #ff5555
+! green
+*color2: #64ff0a
+! bright_green
+*color10: #9bff62
+! yellow
+*color3: #ffa50a
+! bright_yellow
+*color11: #ffc562
+! blue
+*color4: #0a64ff
+! bright_blue
+*color12: #629bff
+! magenta
+*color5: #a50aff
+! bright_magenta
+*color13: #c562ff
+! cyan
+*color6: #0affa5
+! bright_cyan
+*color14: #62ffc5
+! white
+*color7: #d8d8d8
+! bright_white
+*color15: #ffffff
+
