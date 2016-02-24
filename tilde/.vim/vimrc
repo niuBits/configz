@@ -1,0 +1,86 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Navigation panel
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" Rust-lang syntax
+Plugin 'rust-lang/rust.vim'
+
+" Javascript-lang syntax
+Plugin 'pangloss/vim-javascript'
+
+" Swift-lang syntax
+"Plugin 'keith/swift.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Default maximized window
+if has('gui_running')
+    set lines=999 columns=999
+endif
+
+" Default to not having any widget
+if has('gui_running')
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
+endif
+
+" turn on syntax for vim
+syntax on
+
+" Colorscheme
+if has('gui_running')
+    colorscheme slate
+else
+    colorscheme delek
+endif
+
+" Set font
+set guifont=White\ Rabbit\ 12
+
+" Display line number
+set nu
+
+" Highlight search terms
+set hlsearch
+
+" Statusline definition
+set laststatus=2
+set statusline=%h%m\ %t\ %y%r%=[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\ %c,%l/%L\ %P
+
+" Language indentation setup
+"autocmd FileType objc set tabstop=4|set shiftwidth=4|set expandtab
+"autocmd FileType swift set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab
+
+" NERD Tree config (notes: http://www.cheatography.com/stepk/cheat-sheets/vim-nerdtree/)
+autocmd vimenter * NERDTree
+let g:NERDTreeShowHidden=1
+map <C-n> :NERDTreeTabsToggle<CR>
