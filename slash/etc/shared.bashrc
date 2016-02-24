@@ -12,7 +12,11 @@
 alias loadbash='source ~/.bashrc'
 
 ## ls commands
-alias ls='/usr/bin/ls --color=auto -F'
+if [ -f /usr/bin/ls ]; then
+    alias ls='/usr/bin/ls --color=auto -F'
+else
+    alias ls='/bin/ls --color=auto -F'
+fi
 alias la='ls -a'
 alias ll='ls -la'
 alias lsc='/usr/bin/ls --color=always -F'
@@ -40,6 +44,9 @@ alias ccat='/usr/bin/pygmentize -g'
 alias diff='/usr/bin/colordiff'
 
 ## transparent terminal
+if [ -f /usr/bin/transset ]; then
+    alias transset-df='transset'
+fi
 sleep 0.1 && [ -n "$XTERM_VERSION" ] && transset-df -a 0.75 >/dev/null
 
 ## set font & colorscheme for non-X session
@@ -71,6 +78,9 @@ then
 else
     export PS1='\[\033[01;31m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
 fi
+
+# force logout
+alias logout='killall -u steven'
 
 ## lock screen
 alias lockscreen="xscreensaver-command -lock"

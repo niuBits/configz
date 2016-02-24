@@ -1,4 +1,11 @@
 ( if
+( contains ( window_class ) "GVIM" )
+( begin
+( spawn_async (str "transset -i " (window_xid) " 0.70" ))
+)
+)
+
+( if
 ( contains ( window_class ) "Gvim" )
 ( begin
 ( spawn_async (str "transset-df -i " (window_xid) " 0.85" ))
