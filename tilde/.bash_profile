@@ -28,7 +28,7 @@ run_composite_manager () {
     local x_pid=$( pidof X )
     if [ ${#x_pid} -gt 0 ] ; then
         # autostart xcompmgr only if awesome is the selected WM
-        if [ "$GDMSESSION" = "awesome" ]; then
+        if [ -z "$GDMSESSION" ] || [ "$GDMSESSION" = "awesome" ] ; then
             xcompmgr -c &
         fi
         xscreensaver &
