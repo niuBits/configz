@@ -47,7 +47,7 @@ alias diff='/usr/bin/colordiff'
 if [ -f /usr/bin/transset ]; then
     alias transset-df='transset'
 fi
-sleep 0.1 && [ -n "$XTERM_VERSION" ] && transset-df -a 0.75 >/dev/null
+sleep 0.1 && [ -n "$XTERM_VERSION" ] && transset-df -a 0.95 >/dev/null
 
 ## set font & colorscheme for non-X session
 if [ "$TERM" = "linux" ]; then

@@ -10,6 +10,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+-- Widget library (KPN)
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -111,6 +113,107 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibox
+-- Vicious Widgets (KPN)
+
+-- {{{ Date time widget (KPN)
+-- Initialize widget
+datewidget = wibox.widget.textbox()
+-- Set font
+datewidget:set_font("White Rabbit,10")
+-- Register widget
+vicious.register(datewidget, vicious.widgets.date, "%a %b%d,%R", 60)
+-- }}}
+
+-- {{{ Text memory usage widget (KPN)
+vicious.cache(vicious.widgets.mem)
+-- Initialize widget
+txtmemwidget = wibox.widget.textbox()
+-- Set font
+txtmemwidget:set_font("White Rabbit,10")
+-- Register widget
+vicious.register(txtmemwidget, vicious.widgets.mem,
+  function (widget, args)
+    return string.format("MEM:%3d%%(%03.1f/%03.1fGB)", args[1], args[2]/1024, args[3]/1024)
+  end, 1.01)
+-- Set layout
+txtmemwidgetmargin = wibox.layout.margin()
+txtmemwidgetmargin:set_widget(txtmemwidget)
+txtmemwidgetmargin:set_left(4)
+-- }}}
+
+-- {{{ Memory usage widget (KPN)
+-- Initialize widget
+memwidget = awful.widget.progressbar()
+-- Progressbar properties
+memwidget:set_width(8)
+memwidget:set_height(10)
+memwidget:set_vertical(true)
+memwidget:set_background_color("#494B4F")
+memwidget:set_border_color(nil)
+memwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#AECF96"}, {0.5, "#88A175"},
+                    {1, "#FF5656"}}})
+-- Register widget
+vicious.register(memwidget, vicious.widgets.mem, "$1", 1.01)
+-- }}}
+
+-- {{{ Text CPU usage widget (KPN)
+vicious.cache(vicious.widgets.cpu)
+-- Initialize widget
+txtcpuwidget = wibox.widget.textbox()
+-- Set font
+txtcpuwidget:set_font("White Rabbit,10")
+-- Register widget
+vicious.register(txtcpuwidget, vicious.widgets.cpu,-- "CPU: $1%", 0.23)
+  function (widget, args)
+    return string.format("CPU:%3d%%", args[1])
+  end, 0.23)
+-- Set layout
+txtcpuwidgetmargin = wibox.layout.margin()
+txtcpuwidgetmargin:set_widget(txtcpuwidget)
+txtcpuwidgetmargin:set_left(4)
+-- }}}
+
+-- {{{ CPU usage widget (KPN)
+-- Initialize widget
+cpuwidget = awful.widget.graph()
+-- Graph properties
+cpuwidget:set_width(50)
+cpuwidget:set_background_color("#494B4F")
+cpuwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#FF5656"}, {0.5, "#88A175"},
+                    {1, "#AECF96" }}})
+-- Register widget
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 0.23)
+-- }}}
+
+-- {{{ Text Battery label widget (KPN)
+vicious.cache(vicious.widgets.bat)
+-- Initialize widget
+txtbatwidget = wibox.widget.textbox()
+-- Set font
+txtbatwidget:set_font("White Rabbit,10")
+-- Register widget
+vicious.register(txtbatwidget, vicious.widgets.bat, "BAT: $2%", 61, "BAT1")
+-- Set layout
+txtbatwidgetmargin = wibox.layout.margin()
+txtbatwidgetmargin:set_widget(txtbatwidget)
+txtbatwidgetmargin:set_left(4)
+-- }}}
+
+-- {{{ Battery widget (KPN)
+-- Initialize widget
+batwidget = awful.widget.progressbar()
+-- Progressbar properties
+batwidget:set_width(8)
+batwidget:set_height(10)
+batwidget:set_vertical(true)
+batwidget:set_background_color("#494B4F")
+batwidget:set_border_color(nil)
+batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
+  stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } } })
+-- Register widget
+vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT1")
+-- }}}
+
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
@@ -193,7 +296,14 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(mytextclock)
+    right_layout:add(txtcpuwidgetmargin) -- (KPN)
+    right_layout:add(cpuwidget) -- (KPN)
+    right_layout:add(txtmemwidgetmargin) -- (KPN)
+    right_layout:add(memwidget) -- (KPN)
+    right_layout:add(txtbatwidgetmargin) -- (KPN)
+    right_layout:add(batwidget) -- (KPN)
+    right_layout:add(datewidget) -- (KPN)
+    --(KPN)right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
