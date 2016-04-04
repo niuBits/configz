@@ -166,7 +166,7 @@ txtcpuwidget:set_font("White Rabbit,10")
 vicious.register(txtcpuwidget, vicious.widgets.cpu,-- "CPU: $1%", 0.23)
   function (widget, args)
     return string.format("CPU:%3d%%", args[1])
-  end, 0.23)
+  end, 0.71)
 -- Set layout
 txtcpuwidgetmargin = wibox.layout.margin()
 txtcpuwidgetmargin:set_widget(txtcpuwidget)
@@ -182,36 +182,65 @@ cpuwidget:set_background_color("#494B4F")
 cpuwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#FF5656"}, {0.5, "#88A175"},
                     {1, "#AECF96" }}})
 -- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 0.23)
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 0.71)
 -- }}}
 
 -- {{{ Text Battery label widget (KPN)
-vicious.cache(vicious.widgets.bat)
+--vicious.cache(vicious.widgets.bat)
 -- Initialize widget
-txtbatwidget = wibox.widget.textbox()
+txtbat0widget = wibox.widget.textbox()
 -- Set font
-txtbatwidget:set_font("White Rabbit,10")
+txtbat0widget:set_font("White Rabbit,10")
 -- Register widget
-vicious.register(txtbatwidget, vicious.widgets.bat, "BAT: $2%", 61, "BAT1")
+vicious.register(txtbat0widget, vicious.widgets.bat, "BAT: $2%", 61, "BAT0")
 -- Set layout
-txtbatwidgetmargin = wibox.layout.margin()
-txtbatwidgetmargin:set_widget(txtbatwidget)
-txtbatwidgetmargin:set_left(4)
+txtbat0widgetmargin = wibox.layout.margin()
+txtbat0widgetmargin:set_widget(txtbat0widget)
+txtbat0widgetmargin:set_left(4)
 -- }}}
 
 -- {{{ Battery widget (KPN)
 -- Initialize widget
-batwidget = awful.widget.progressbar()
+bat0widget = awful.widget.progressbar()
 -- Progressbar properties
-batwidget:set_width(8)
-batwidget:set_height(10)
-batwidget:set_vertical(true)
-batwidget:set_background_color("#494B4F")
-batwidget:set_border_color(nil)
-batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
+bat0widget:set_width(8)
+bat0widget:set_height(10)
+bat0widget:set_vertical(true)
+bat0widget:set_background_color("#494B4F")
+bat0widget:set_border_color(nil)
+bat0widget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
   stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } } })
 -- Register widget
-vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT1")
+vicious.register(bat0widget, vicious.widgets.bat, "$2", 61, "BAT0")
+-- }}}
+
+-- {{{ Text Battery label widget (KPN)
+--vicious.cache(vicious.widgets.bat)
+-- Initialize widget
+txtbat1widget = wibox.widget.textbox()
+-- Set font
+txtbat1widget:set_font("White Rabbit,10")
+-- Register widget
+vicious.register(txtbat1widget, vicious.widgets.bat, "$2%", 61, "BAT1")
+-- Set layout
+txtbat1widgetmargin = wibox.layout.margin()
+txtbat1widgetmargin:set_widget(txtbat1widget)
+txtbat1widgetmargin:set_left(4)
+-- }}}
+
+-- {{{ Battery widget (KPN)
+-- Initialize widget
+bat1widget = awful.widget.progressbar()
+-- Progressbar properties
+bat1widget:set_width(8)
+bat1widget:set_height(10)
+bat1widget:set_vertical(true)
+bat1widget:set_background_color("#494B4F")
+bat1widget:set_border_color(nil)
+bat1widget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
+  stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } } })
+-- Register widget
+vicious.register(bat1widget, vicious.widgets.bat, "$2", 61, "BAT1")
 -- }}}
 
 -- Create a textclock widget
@@ -300,8 +329,10 @@ for s = 1, screen.count() do
     right_layout:add(cpuwidget) -- (KPN)
     right_layout:add(txtmemwidgetmargin) -- (KPN)
     right_layout:add(memwidget) -- (KPN)
-    right_layout:add(txtbatwidgetmargin) -- (KPN)
-    right_layout:add(batwidget) -- (KPN)
+    right_layout:add(txtbat0widgetmargin) -- (KPN)
+    right_layout:add(bat0widget) -- (KPN)
+    right_layout:add(txtbat1widgetmargin) -- (KPN)
+    right_layout:add(bat1widget) -- (KPN)
     right_layout:add(datewidget) -- (KPN)
     --(KPN)right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])

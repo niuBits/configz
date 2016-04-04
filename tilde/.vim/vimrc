@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Navigation panel
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 
 " Rust-lang syntax
 Plugin 'rust-lang/rust.vim'
@@ -79,8 +79,9 @@ set statusline=%h%m\ %t\ %y%r%=[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\ %c,%l/%L\
 "autocmd FileType swift set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType json set tabstop=4|set shiftwidth=4|set expandtab
 
 " NERD Tree config (notes: http://www.cheatography.com/stepk/cheat-sheets/vim-nerdtree/)
 autocmd vimenter * NERDTree
 let g:NERDTreeShowHidden=1
-map <C-n> :NERDTreeTabsToggle<CR>
+map <C-n> :NERDTreeToggle<CR>

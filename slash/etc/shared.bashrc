@@ -47,7 +47,7 @@ alias diff='/usr/bin/colordiff'
 if [ -f /usr/bin/transset ]; then
     alias transset-df='transset'
 fi
-sleep 0.1 && [ -n "$XTERM_VERSION" ] && transset-df -a 0.95 >/dev/null
+sleep 0.1 && [ -n "$XTERM_VERSION" ] && transset-df -a 0.90 >/dev/null
 
 ## set font & colorscheme for non-X session
 if [ "$TERM" = "linux" ]; then
@@ -88,3 +88,5 @@ alias lockscreen="xscreensaver-command -lock"
 ## reboot computer
 alias reboot="shutdown -r now"
 
+## restart wired network
+alias reconnect="sudo systemctl restart dhcpcd@enp0s25.service"
