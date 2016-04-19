@@ -11,6 +11,10 @@ xterm*saveLines: 4096
 !xterm*faceName: DejaVu Sans Mono
 !xterm*faceSize: 12
 
+! DejaVu Sans Mono
+!xterm*faceName: DejaVu Sans Mono:style=Book
+!xterm*faceSize: 10.5
+
 ! Ohsnapu
 !xterm*faceName: Ohsnapu:style=Bold
 !xterm*faceSize: 14
@@ -20,8 +24,13 @@ xterm*saveLines: 4096
 !xterm*faceSize: 14
 
 ! White Rabbit
-xterm*faceName: White Rabbit
-xterm*faceSize: 12
+!xterm*faceName: White Rabbit
+!xterm*faceSize: 12
+
+! Iosevka
+xterm*faceName: Iosevka Medium:style=Medium
+xterm*faceSize: 10.5
+xterm*borderWidth: 0
 
 !---- Color Scheme
 *background: #4d4e4f
@@ -29,7 +38,9 @@ xterm*faceSize: 12
 ! black
 *color0: #000000
 ! bright_black
-*color8: #3c3c3c
+!*color8: #3c3c3c
+!*color8: #1d1d1d
+*color8: #000000
 ! red
 !*color1: #ff0a64
 *color1: #ff0000
@@ -45,7 +56,14 @@ xterm*faceSize: 12
 ! bright_yellow
 *color11: #ffc562
 ! blue
-*color4: #0a64ff
+!*color4: #0a64ff
+!*color4: #3333ff
+!*color4: #0041b3
+!*color4: #004bcc
+!*color4: #005eff
+!*color4: #1a6eff
+!*color4: #337eff
+*color4: #629bff
 ! bright_blue
 *color12: #629bff
 ! magenta

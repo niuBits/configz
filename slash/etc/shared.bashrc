@@ -31,11 +31,11 @@ alias grepc='grep --color=always -n'
 alias less='less -R'
 
 ## tree
-alias tree='/usr/bin/tree -lhFC --dirsfirst'
-alias tree_monochrome='/usr/bin/tree -lhFn --dirsfirst'
+alias tree='/usr/bin/tree -lFC --dirsfirst'
+alias tree_monochrome='/usr/bin/tree -lFn --dirsfirst'
 
 ## clear terminal
-alias cls='echo -e "\033c"'
+alias cls='echo -ne "\033c\033c"'
 
 ## colored cat
 alias ccat='/usr/bin/pygmentize -g'
@@ -74,7 +74,12 @@ fi
 ## custom PS1 
 if [ "$UID" -ne 0 ]
 then
-    export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    if [ $(xrdb -q | grep Iosevka | wc -l) -eq 0 ]
+    then
+        export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    else
+        export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \[\033[0m\]\[\033[30m\033[44m\]\356\202\260 \[\033[1;30m\033[44m\]\$ \[\033[0m\033[34m\033[40m\]\356\202\260\[\033[00m\] '
+    fi
 else
     export PS1='\[\033[01;31m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
 fi
@@ -88,5 +93,18 @@ alias lockscreen="xscreensaver-command -lock"
 ## reboot computer
 alias reboot="shutdown -r now"
 
+## suspend computer
+alias suspend="systemctl suspend"
+
 ## restart wired network
 alias reconnect="sudo systemctl restart dhcpcd@enp0s25.service"
+
+## Go Lang env var
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+
+## start IBus daemon
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -drx

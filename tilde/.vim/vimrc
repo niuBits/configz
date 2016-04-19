@@ -80,6 +80,7 @@ set statusline=%h%m\ %t\ %y%r%=[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\ %c,%l/%L\
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType json set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
 
 " NERD Tree config (notes: http://www.cheatography.com/stepk/cheat-sheets/vim-nerdtree/)
 autocmd vimenter * NERDTree
